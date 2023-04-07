@@ -20,7 +20,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
         with:
-          repository: github.com/ggerganov/whisper.cp
+          repository: ggerganov/whisper.cp
           fetch-depth: 1
 
       - name: Tar the docker.tar Release
