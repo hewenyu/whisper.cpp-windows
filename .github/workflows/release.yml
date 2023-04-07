@@ -1,15 +1,15 @@
-name: Release Tar
+name: release ggerganov/whisper.cpp
 
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
 # on:
 #   push:
-#     tags:
-#       - "v*.*.*"
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+on:
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
           repository: ggerganov/whisper.cpp
           fetch-depth: 1
 
-      - name: Tar the docker.tar Release
+      - name: Build Release
         run: |
           sudo apt-get install git curl build-essential g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix libsdl2-dev -y
           mkdir bin-windows
