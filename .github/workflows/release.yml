@@ -1,0 +1,47 @@
+name: Release Tar
+
+
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          repository: github.com/ggerganov/whisper.cp
+          fetch-depth: 1
+
+      - name: Tar the docker.tar Release
+        run: |
+          sudo apt-get install git curl build-essential g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix libsdl2-dev -y
+          mkdir bin-windows
+          mkdir bin-windows/models
+          cp ./models/download-ggml-model.sh bin-windows/models
+          x86_64-w64-mingw32-gcc-posix -I. -O3 -std=c11 -mfma -mf16c -mavx -mavx2 -c ggml.c -o bin-windows/ggml.o
+          x86_64-w64-mingw32-g++-posix -I. -I./examples -O3 -std=c++11 -lwinpthread -c whisper.cpp -o bin-windows/whisper.o
+          x86_64-w64-mingw32-g++-posix -I. -I./examples -O3 -std=c++11 -lwinpthread -c examples/common.cpp -o bin-windows/common.o
+          x86_64-w64-mingw32-g++-posix -I. -I./examples -O3 -std=c++11 -static-libgcc -static-libstdc++ -lwinpthread examples/main/main.cpp bin-windows/common.o bin-windows/whisper.o bin-windows/ggml.o -o main
+
+      - name: Release
+        uses: softprops/action-gh-release@v0.1.15
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          body: TODO New Release.
+          draft: false
+          prerelease: false
+          files: |
+            mian.exe
