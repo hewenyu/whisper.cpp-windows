@@ -1,15 +1,15 @@
 name: Release Tar
 
 
-# on:
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+# on:
+#   push:
+#     tags:
+#       - "v*.*.*"
 
 jobs:
   build:
