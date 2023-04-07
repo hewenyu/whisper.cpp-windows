@@ -42,7 +42,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           name: Build ${{ github.ref }}
-          body: TODO New Release.
+          body: Build New File With github.com/ggerganov/whisper.cpp
           draft: false
           prerelease: false
           files: |
