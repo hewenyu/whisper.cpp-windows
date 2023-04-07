@@ -46,6 +46,6 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            mian.exe
+            main.exe
             main
             stream
