@@ -1,2 +1,3 @@
 # whisper.cpp-windows
-to build whisper.cpp
+
+Auto Build From [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
