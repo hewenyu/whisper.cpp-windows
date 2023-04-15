@@ -6,8 +6,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone
+      - name: Checkout source
         uses: actions/checkout@v3
+        with:
+          repository: ggerganov/whisper.cpp
+          fetch-depth: 1
 
       - name: Dependencies
         run: |
@@ -32,8 +35,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Clone
+      - name: Checkout source
         uses: actions/checkout@v3
+        with:
+          repository: ggerganov/whisper.cpp
+          fetch-depth: 1
 
       - name: Dependencies
         run: |
@@ -70,8 +76,11 @@ jobs:
             s2ver: 2.26.0
 
     steps:
-      - name: Clone
+      - name: Checkout source
         uses: actions/checkout@v3
+        with:
+          repository: ggerganov/whisper.cpp
+          fetch-depth: 1
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1
