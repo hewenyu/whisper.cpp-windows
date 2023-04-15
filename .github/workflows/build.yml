@@ -25,10 +25,9 @@ jobs:
       - name: Build
         run: |
           mkdir build
-          make && chmod +x main  && mv main ./build
-          make stream && chmod +x stream && mv stream ./build
-
-
+          make
+          mv bin/* ./build
+  
       - name: Upload binaries
         uses: actions/upload-artifact@v3
         with:
