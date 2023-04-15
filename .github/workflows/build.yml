@@ -140,10 +140,13 @@ jobs:
           
       - name: Download macOS Dependencies
         run: |
-          wget https://evermeet.cx/ffmpeg/$(curl https://evermeet.cx/ffmpeg/ | grep 'href=".*\.zip"' | grep -o '[^"]\+\.zip' | head -n 1)
+          wget https://evermeet.cx/ffmpeg/$(curl https://evermeet.cx/ffmpeg/ | grep 'href=".*\.zip"' | grep -o '[^"]\+\.zip' | grep ffmpeg | head -n 1)
+          wget https://evermeet.cx/ffmpeg/$(curl https://evermeet.cx/ffmpeg/ | grep 'href=".*\.zip"' | grep -o '[^"]\+\.zip' | grep ffprobe | head -n 1)
           unzip ffmpeg*.zip
-          rm ffmpeg*.zip
+          unzip ffprobe*.zip
+          rm ffmpeg*.zip ffprobe*.zip
           mv ffmpeg whisper-bin-darwin/
+          mv ffprobe whisper-bin-darwin/
           curl https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o yt-dlp
           chmod +x yt-dlp
           mv yt-dlp whisper-bin-darwin/
