@@ -124,6 +124,20 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
 
+      - name: Clone
+        uses: actions/checkout@v3
+        with:
+          path: code
+          fetch-depth: 1
+
+      - name: Copy Code
+        run: |
+          cp -r code/* whisper-bin-Win32/
+          cp -r code/* whisper-bin-darwin/
+          cp -r code/* whisper-bin-linux/
+          cp -r code/* whisper-bin-x64/
+          rm -r code
+          
       - name: Download macOS Dependencies
         run: |
           wget https://evermeet.cx/ffmpeg/$(curl https://evermeet.cx/ffmpeg/ | grep 'href=".*\.zip"' | grep -o '[^"]\+\.zip' | head -n 1)
