@@ -31,6 +31,8 @@
 
 set -Eeuo pipefail
 
+
+
 # get script file location
 SCRIPT_PATH="$(realpath -e ${BASH_SOURCE[0]})";
 SCRIPT_DIR="${SCRIPT_PATH%/*}"
@@ -80,7 +82,7 @@ print_help() {
     echo "# be named for the title and id of the video."
     echo "# passing in https://youtu.be/VYJtb2YXae8 produces a file named";
     echo "# 'Why_we_all_need_subtitles_now-VYJtb2YXae8-res.mp4'"
-    echo "# Requirements: ./ffmpeg ./yt-dlp ./main"
+    echo "# Requirements: ffmpeg yt-dlp ./main"
     echo "################################################################################"
 }
 
@@ -101,7 +103,7 @@ fi
 # set the temp_dir and temp_filename variables
 ################################################################################
 temp_dir="$(mktemp -d ${SCRIPT_DIR}/tmp.XXXXXX)";
-temp_filename="${temp_dir}/./yt-dlp-filename";
+temp_filename="${temp_dir}/yt-dlp-filename";
 
 ################################################################################
 # for now we only take one argument
@@ -117,7 +119,7 @@ msg "Downloading VOD...";
 # Optionally add --cookies-from-browser BROWSER[+KEYRING][:PROFILE][::CONTAINER]
 # for videos only available to logged-in users.
 ################################################################################
-./yt-dlp \
+yt-dlp \
     -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" \
     -o "${temp_dir}/%(title)s-%(id)s.vod.mp4" \
     --print-to-file "%(filename)s" "${temp_filename}" \
@@ -133,7 +135,7 @@ title_name="$(xargs basename -s .vod.mp4 < ${temp_filename})";
 
 msg "Extracting audio and resampling...";
 
-./ffmpeg -i "${temp_dir}/${title_name}.vod.mp4"  \
+ffmpeg -i "${temp_dir}/${title_name}.vod.mp4"  \
     -hide_banner \
     -vn \
     -loglevel error \
@@ -155,7 +157,7 @@ msg "Whisper specified at: '${WHISPER_EXECUTABLE}'";
 
 msg "Embedding subtitle track...";
 
-./ffmpeg -i "${temp_dir}/${title_name}.vod.mp4" \
+ffmpeg -i "${temp_dir}/${title_name}.vod.mp4" \
     -hide_banner \
     -loglevel error \
     -i "${temp_dir}/${title_name}.vod-resampled.wav.srt" \

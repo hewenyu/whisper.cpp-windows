@@ -3,7 +3,14 @@
 Auto Build From [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
 
 
-# Use
+# Example
+Download ZIP File from [Release](https://github.com/hewenyu/whisper.cpp-windows/releases) 
+
+the add env
+```bash
+$ unzip whisper-bin*.zip && cd whisper-bin*/
+$ export PATH=$PATH:$(pwd)
+```
 
 ## Download model
 Download model from [huggingface](https://huggingface.co/ggerganov/whisper.cpp) 
@@ -20,3 +27,6 @@ You can now use it like this:
 $ ./main -m models/ggml-base.bin -f jfk.wav
 ```
 
+```bash
+bash yt-wsp.sh  https://www.youtube.com/watch?v=DRgPyOXZ-oE
+```
