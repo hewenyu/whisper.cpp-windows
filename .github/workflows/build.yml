@@ -159,7 +159,7 @@ jobs:
           wget https://www.johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
           tar xf ffmpeg-release-amd64-static.tar.xz
           rm ffmpeg-release-amd64-static.tar.xz
-          mv ffmpeg-*-static/ffmpeg whisper-bin-linux/
+          mv ffmpeg-*-static/ff* whisper-bin-linux/
           rm -r ffmpeg-*-static/
           wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O yt-dlp
           chmod +x yt-dlp
