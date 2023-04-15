@@ -3,11 +3,12 @@
 Auto Build From [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
 
 
-# Example
+# Example as Ubuntu
 Download ZIP File from [Release](https://github.com/hewenyu/whisper.cpp-windows/releases) 
 
 the add env
 ```bash
+$ sudo apt-get install attr -y
 $ unzip whisper-bin*.zip && cd whisper-bin*/
 $ export PATH=$PATH:$(pwd)
 ```

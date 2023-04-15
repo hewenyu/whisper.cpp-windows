@@ -2,7 +2,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  ubuntu-latest:
+  ubuntu-gcc-sanitized:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,13 +16,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install build-essential
+          sudo apt-get install cmake
           sudo apt-get install libsdl2-dev
+      
+      - name: Configure
+        run: cmake . -DWHISPER_SUPPORT_SDL2=ON -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: |
           mkdir build
-          make && mv main ./build
-          make stream && mv stream ./build
+          make && chmodx +x main  && mv main ./build
+          make stream && chmodx +x stream && mv stream ./build
+
 
       - name: Upload binaries
         uses: actions/upload-artifact@v3
