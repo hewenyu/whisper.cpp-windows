@@ -55,7 +55,7 @@ jobs:
       - name: Upload binaries
         uses: actions/upload-artifact@v3
         with:
-          name: whisper-bin-drawin
+          name: whisper-bin-darwin
           path: build
 
 
@@ -133,6 +133,6 @@ jobs:
         with:
           files: |
             artifact/translate-Win32.zip
-            artifact/translate-drawin.zip
+            artifact/translate-darwin.zip
             artifact/translate-linux.zip
             artifact/translate-x64.zip
