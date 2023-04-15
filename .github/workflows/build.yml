@@ -125,7 +125,10 @@ jobs:
         uses: actions/download-artifact@v3
 
       - name: Display structure of downloaded files
-        run: ls -R
+        run: |
+          ls -R
+          for i in */; do zip -r "${i%/}.zip" "$i"; done
+          ls -R
 
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
