@@ -129,8 +129,7 @@ jobs:
           wget https://evermeet.cx/ffmpeg/$(curl https://evermeet.cx/ffmpeg/ | grep 'href=".*\.zip"' | grep -o '[^"]\+\.zip' | head -n 1)
           unzip ffmpeg*.zip
           rm ffmpeg*.zip
-          mv ffmpeg*/ whisper-bin-darwin/
-          rm -r ffmpeg*/
+          mv ffmpeg whisper-bin-darwin/
           curl https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o yt-dlp
           chmod +x yt-dlp
           mv yt-dlp whisper-bin-darwin/
@@ -140,7 +139,7 @@ jobs:
           wget https://www.johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
           tar xf ffmpeg-release-amd64-static.tar.xz
           rm ffmpeg-release-amd64-static.tar.xz
-          mv ffmpeg-*-static/ whisper-bin-linux/
+          mv ffmpeg-*-static/ffmpeg whisper-bin-linux/
           rm -r ffmpeg-*-static/
           wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O yt-dlp
           chmod +x yt-dlp
@@ -153,8 +152,8 @@ jobs:
           wget https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
           unzip ffmpeg-release-essentials.zip
           rm ffmpeg-release-essentials.zip
-          mv ffmpeg-*-essentials/* whisper-bin-Win32/
-          rm -r ffmpeg-*-essentials/
+          mv ffmpeg-*-essentials*/bin/* whisper-bin-Win32/
+          rm -r ffmpeg-*-essentials*/
           curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -o yt-dlp.exe
           mv yt-dlp.exe whisper-bin-Win32/
 
@@ -163,8 +162,8 @@ jobs:
           wget https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
           unzip ffmpeg-release-essentials.zip
           rm ffmpeg-release-essentials.zip
-          mv ffmpeg-*-essentials/* whisper-bin-x64/
-          rm -r ffmpeg-*-essentials/
+          mv ffmpeg-*-essentials*/bin/* whisper-bin-x64/
+          rm -r ffmpeg-*-essentials*/
           curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -o yt-dlp.exe
           mv yt-dlp.exe whisper-bin-x64/
 
