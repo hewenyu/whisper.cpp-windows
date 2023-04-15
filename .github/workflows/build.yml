@@ -124,11 +124,48 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
 
+      - name: Download macOS Dependencies
+        run: |
+          wget https://evermeet.cx/ffmpeg/$(curl https://evermeet.cx/ffmpeg/ | grep 'href=".*\.zip"' | grep -o '[^"]\+\.zip' | head -n 1)
+          unzip ffmpeg*.zip
+          rm ffmpeg*.zip
+          mv ffmpeg*/ whisper-bin-darwin/
+          rm -r ffmpeg*/
+      
+      - name: Download Linux Dependencies
+        run: |
+          wget https://www.johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+          tar xf ffmpeg-release-amd64-static.tar.xz
+          rm ffmpeg-release-amd64-static.tar.xz
+          mv ffmpeg-*-static/ whisper-bin-linux/
+          rm -r ffmpeg-*-static/
+
+
+      - name: Download Windows win32 Dependencies
+        run: |
+          wget https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
+          unzip ffmpeg-release-essentials.zip
+          rm ffmpeg-release-essentials.zip
+          mv ffmpeg-*-essentials/* whisper-bin-Win32/
+          rm -r ffmpeg-*-essentials/
+
+      - name: Download Windows x64 Dependencies
+        run: |
+          wget https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip
+          unzip ffmpeg-release-essentials.zip
+          rm ffmpeg-release-essentials.zip
+          mv ffmpeg-*-essentials/* whisper-bin-x64/
+          rm -r ffmpeg-*-essentials/
+
       - name: Display structure of downloaded files
         run: |
           ls -R
+
+      - name: Run ZIP files
+        run: |
           for i in */; do zip -r "${i%/}.zip" "$i"; done
-          ls -R
+          
+          
 
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
