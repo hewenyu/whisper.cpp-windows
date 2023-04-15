@@ -133,6 +133,12 @@ jobs:
           curl https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o yt-dlp
           chmod +x yt-dlp
           mv yt-dlp whisper-bin-darwin/
+          wget https://github.com/hewenyu/translate/releases/latest/download/translate-drawin.zip
+          unzip translate-drawin.zip
+          rm translate-drawin.zip
+          mv build/* whisper-bin-darwin/
+          rm -r build
+
       
       - name: Download Linux Dependencies
         run: |
@@ -144,6 +150,11 @@ jobs:
           wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O yt-dlp
           chmod +x yt-dlp
           mv yt-dlp whisper-bin-linux/
+          wget https://github.com/hewenyu/translate/releases/latest/download/translate-linux.zip
+          unzip translate-linux.zip
+          rm translate-linux.zip
+          mv build/* whisper-bin-linux/
+          rm -r build
 
 
 
@@ -156,6 +167,11 @@ jobs:
           rm -r ffmpeg-*-essentials*/
           curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -o yt-dlp.exe
           mv yt-dlp.exe whisper-bin-Win32/
+          wget https://github.com/hewenyu/translate/releases/latest/download/translate-Win32.zip
+          unzip translate-Win32.zip
+          rm translate-Win32.zip
+          mv build/* whisper-bin-Win32/
+          rm -r build
 
       - name: Download Windows x64 Dependencies
         run: |
@@ -166,6 +182,11 @@ jobs:
           rm -r ffmpeg-*-essentials*/
           curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -o yt-dlp.exe
           mv yt-dlp.exe whisper-bin-x64/
+          wget https://github.com/hewenyu/translate/releases/latest/download/translate-x64.zip
+          unzip translate-x64.zip
+          rm translate-x64.zip
+          mv build/* whisper-bin-x64/
+          rm -r build
 
       - name: Display structure of downloaded files
         run: |
