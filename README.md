@@ -11,6 +11,7 @@ the add env
 $ sudo apt-get install attr -y
 $ unzip whisper-bin*.zip && cd whisper-bin*/
 $ export PATH=$PATH:$(pwd)
+$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)
 ```
 
 ## Download model

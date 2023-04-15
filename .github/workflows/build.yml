@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   ubuntu-latest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout source
@@ -27,6 +27,7 @@ jobs:
           mkdir build
           make
           mv bin/* ./build
+          mv libwhisper.so ./build
   
       - name: Upload binaries
         uses: actions/upload-artifact@v3
