@@ -131,6 +131,9 @@ jobs:
           rm ffmpeg*.zip
           mv ffmpeg*/ whisper-bin-darwin/
           rm -r ffmpeg*/
+          curl https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o yt-dlp
+          chmod +x yt-dlp
+          mv yt-dlp whisper-bin-darwin/
       
       - name: Download Linux Dependencies
         run: |
@@ -139,6 +142,10 @@ jobs:
           rm ffmpeg-release-amd64-static.tar.xz
           mv ffmpeg-*-static/ whisper-bin-linux/
           rm -r ffmpeg-*-static/
+          wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O yt-dlp
+          chmod +x yt-dlp
+          mv yt-dlp whisper-bin-linux/
+
 
 
       - name: Download Windows win32 Dependencies
@@ -148,6 +155,8 @@ jobs:
           rm ffmpeg-release-essentials.zip
           mv ffmpeg-*-essentials/* whisper-bin-Win32/
           rm -r ffmpeg-*-essentials/
+          curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -o yt-dlp.exe
+          mv yt-dlp.exe whisper-bin-Win32/
 
       - name: Download Windows x64 Dependencies
         run: |
@@ -156,6 +165,8 @@ jobs:
           rm ffmpeg-release-essentials.zip
           mv ffmpeg-*-essentials/* whisper-bin-x64/
           rm -r ffmpeg-*-essentials/
+          curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -o yt-dlp.exe
+          mv yt-dlp.exe whisper-bin-x64/
 
       - name: Display structure of downloaded files
         run: |
