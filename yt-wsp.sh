@@ -44,7 +44,7 @@ SCRIPT_DIR="${SCRIPT_PATH%/*}"
 # note: unless a multilingual model is specified, WHISPER_LANG will be ignored
 # and the video will be transcribed as if the audio were in the English language
 ################################################################################
-MODEL_PATH="${MODEL_PATH:-${SCRIPT_DIR}/models/ggml-base.bin}"
+MODEL_PATH="${MODEL_PATH:-${SCRIPT_DIR}/model/ggml-base.bin}"
 
 ################################################################################
 # Where to find the whisper.cpp executable.  default to the examples directory
