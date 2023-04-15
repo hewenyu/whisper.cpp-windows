@@ -29,6 +29,11 @@ You can now use it like this:
 $ ./main -m models/ggml-base.bin -f jfk.wav
 ```
 
+## build
 ```bash
 bash yt-wsp.sh  https://www.youtube.com/watch?v=DRgPyOXZ-oE
 ```
+
+
+# TODO
+windows build
